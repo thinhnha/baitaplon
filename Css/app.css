@@ -1,0 +1,148 @@
+*{
+    box-sizing: border-box;
+}
+#header {
+    background-color: #131921;
+}
+.container-menu {
+    max-width: 1200px;
+    margin: 0px auto;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+#logomenu {
+    padding: 5px 0px;
+}
+#logomenu img{
+    max-width: 80px;
+    height: auto;
+}
+#main-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+}
+#main-menu li {
+    position: relative;
+}
+#main-menu li a {
+    color: #f8f8f8;
+    display: block;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+#main-menu ul.sub-menu {
+    position: absolute;
+    background-color: #131921;
+    padding: 15px 0px;
+    list-style: none;
+    width: 200px;
+    border: 1px solid #434343;
+    display: none;
+}
+#main-menu li:hover ul.sub-menu {
+    display: block;
+}
+#main-menu ul.sub-menu a {
+    padding: 8px 15px;
+    border-bottom: 1px solid #434343;
+}
+#main-menu ul.sub-menu li:hover a {
+    border-bottom: 1px solid #6e6e6e;
+}
+#main-menu ul.sub-menu li:last-child a {
+    border: none;
+}
+#main-menu>li>a {
+    position: relative;
+}
+#main-menu>li>a::before {
+    content: "";
+    height: 4px;
+    width: 0px;
+    background-color: #f00;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+#main-menu>li:hover>a::before {
+    width: 100%;
+}
+.form-search input {
+    width: 250px;
+    height: 15px;
+    padding: 17px;
+    margin-bottom: 0px;
+    border: none;
+  }
+  .form-search button {
+    margin-left: 0px;
+    height: 50px;
+    width: 50px;
+    border:none;
+  } 
+  .search-btn {
+    background-color:white;
+  }
+  .form-search {
+    text-align: center;
+    margin: auto;
+    background-color: white;
+  }
+  .head {
+    background-color: #131921;
+    padding: 0px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px; 
+    display: flex;
+    text-align: center;
+  }
+  .form-login {
+    text-align: right;
+    font-size:large;
+    display: block;
+    margin-top: 25px;
+  }
+  .form-login button {
+    height: 40px;
+    width: 130px;
+    border-radius: 5p;
+  }
+.login-btn {
+    color: white;
+    background-color: rgba(128, 128, 128, 0.744);
+}
+#main-content {
+    max-width: 1200px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 200px 400px;
+    grid-template-areas: 
+    "sidebar picture"
+    "sidebar content"
+}
+#picture {
+    grid-area: picture;
+}
+#content {
+    background-color: aqua;
+    grid-area: content;
+}
+#sidebar {
+    background-color: #f00;
+    grid-area: sidebar;
+}
+#footer {
+    max-width: 1200px;
+    margin: 0px auto;
+    background-color: yellow;
+    padding: 15px;
+    text-align: center;
+}
