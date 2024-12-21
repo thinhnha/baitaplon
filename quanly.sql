@@ -79,11 +79,11 @@ INSERT INTO `sanpham` (`id`, `name`, `price`, `type`, `img`) VALUES
 -- Table structure for table `taikhoan`
 --
 
-CREATE TABLE `taikhoan` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
