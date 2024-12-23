@@ -35,11 +35,22 @@ if (isset($_SESSION['user'])) {
             </div>
             <div id="content">
                 <?php if (!empty($username)): ?>
-                    <h1>Chào mừng đến với cửa hàng game giá rẻ, <?php echo $username; ?>!</h1>
-                    <p>Đây là nơi bạn có thể tìm thấy những tựa game hấp dẫn với mức giá tốt nhất. Hãy khám phá danh mục của chúng tôi để tìm kiếm những trò chơi yêu thích của bạn.</p>
+                      <?php 
+        while($row = $result->fetch_assoc())
+        {$price = number_format($row['price'], 0, ',', '.') . " ₫";
+        echo "
+            <a href='sanpham.php?id=".$row['id']."' >
+            <img src='".$row['img']."' alt='sample picture' width='100px' height ='100px'>
+            <p>".$row['name']." </p>
+            <p>".$price."</p>
+            </a>
+            ";
+            
+        }
+        ?>
+                
                 <?php else: ?>
-                    <h1>Chào mừng đến với cửa hàng game giá rẻ!</h1>
-                    <p>Đây là nơi bạn có thể tìm thấy những tựa game hấp dẫn với mức giá tốt nhất. Đăng nhập để khám phá nhiều hơn.</p>
+                    <h1>Hãy đăng nhập để xem sản phẩm</h1>
                 <?php endif; ?>
             </div>
         </div>
