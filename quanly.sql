@@ -128,7 +128,7 @@ ALTER TABLE `sanpham`
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
-ALTER TABLE `taikhoan`
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
