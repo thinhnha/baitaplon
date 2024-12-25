@@ -39,7 +39,7 @@ if (isset($_SESSION['user'])) {
         while($row = $result->fetch_assoc())
         {$price = number_format($row['price'], 0, ',', '.') . " ₫";
         echo "
-            <a href='product.php?id=".$row['id']."' >
+            <a href='products.php?id=".$row['id']."' >
             <img src='".$row['img']."' alt='sample picture' width='100px' height ='100px'>
             <p>".$row['name']." </p>
             <p>".$price."</p>
