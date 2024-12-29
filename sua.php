@@ -1,13 +1,22 @@
 <?php
-    require 'connect.php';
-        $sql = "SELECT * FROM sanpham ";
-            $id = (int) $_GET['id'];
-            $sql = "UPDATE khachhang SET fullname = '$fullname', adress = '$address', email = '$email', number = '$number'";
-        $result = $conn->query($sql);
-        if ($result)
-        {
-            header("Location:index.php");
-        }
+require('connect.php');
+$id = (int) $_GET['id'];
+$sql = "SELECT * FROM `khachhang` WHERE `id` = {$id}";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+if($_SERVER['REQUEST_METHOD']==='POST')
+{  
+    $fullname = $_POST['fullname'];
+    $address = $_POST['address'];
+    $email = $_POST['email'];
+    $number = $_POST['number'];
+    if(strpos($email, '@gmail.com') !== FALSE)
+    $update = "UPDATE khachhang SET fullname = '$fullname', address = '$address', email = '$email', number = '$number'";
+    if($conn->query($update) === TRUE)
+    {
+        header("Location:index.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
