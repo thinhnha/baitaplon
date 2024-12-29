@@ -1,17 +1,13 @@
 <?php
-require('connect.php');
-$id = (int) $_GET['id'];
-$sql = "SELECT * FROM `sanpham` WHERE `id` = {$id}";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-if($_SERVER['REQUEST_METHOD']==='POST')
-{  
+require ('connect.php');
+if(isset($_POST['add']))
+{
     $name = $_POST['name'];
     $price = intval($_POST['price']);
     $type = $_POST['type'];
     $quantity = $_POST['quantity'];
-    $pname = $_FILES["img"]["name"];
     $info = $_POST['info'];
+    $pname = $_FILES["img"]["name"];
     $upload_dir = 'images/';
     $upload_file= $upload_dir . basename($_FILES["img"]["name"]);
     $imageFileType = strtolower(pathinfo($upload_file,PATHINFO_EXTENSION));
@@ -22,55 +18,61 @@ if($_SERVER['REQUEST_METHOD']==='POST')
 }
   else { 
     move_uploaded_file($_FILES["img"]["tmp_name"], $upload_file); 
-    $update = "UPDATE sanpham SET name = '$name', price = '$price', type = '$type', quantity = '$quantity', img = '$upload_file', info = '$info' WHERE id = {$id}";
-if($conn ->query($update)===TRUE)
-{
-    header('Location:index.php');
+    $sql = "INSERT INTO `sanpham` (`name`, `price`, `type`,`quantity`, `img`, `info`)
+            VALUES ('$name', '$price', '$type', '$quantity', '$upload_file','$info')";
+    if($conn->query($sql) === TRUE )
+             {
+                 $message = "Thêm sản phẩm thành công";
+                 echo "<script type='text/javascript'>alert('$message');</script>";
+             }
+  }
+   
 }
-}
-}
+
+$sql1 = "SELECT * FROM sanpham";
+$result = $conn->query($sql1);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Nhập thông tin</title>
     </head>
     <body>
-    <div>
+        <div>
             <form enctype="multipart/form-data" method="post">
                 <div>
                 <label for="name">Tên sản phẩm:</label>
-                <input type="text" name="name" id="name" value="<?=$row['name']?>">
+                <input type="text" name="name" id="name">
                 </div>
                 <div>
                     <label for="price">Giá: </label>
-                    <input type="number" name="price" id="price" value="<?=$row['price']?>">
+                    <input type="number" name="price" id="price">
 </div>
                 <div>
                     <label for="">Thể loại:</label>
                     <select id="type" name="type">
-                    <option value="0" <?= $row['type']==0 ? 'selected':''?>>PS5</option>
-                    <option value="1" <?= $row['type']==1 ? 'selected':''?>>PS4</option>
-                    <option value="2" <?= $row['type']==2 ? 'selected':''?>>Nintendo Switch</option>
-                    <option value="3" <?= $row['type']==3 ? 'selected':''?>>XBOX ONE</option>
+                    <option value="0">PS5</option>
+                    <option value="1">PS4</option>
+                    <option value="2">Nintendo Switch</option>
+                    <option value="3">XBOX ONE</option>
                     </select>
                 </div>
                 <div>
                     <label for="quantity">Số lượng: </label>
-                    <input type="number" name="quantity" id="quantity" value="<?=$row['quantity']?>">
+                    <input type="number" name="quantity" id="quantity">
                 </div>
             <div>
                 <label for="img">Hình ảnh</label>
-                <input type="File" name="img" id="img" value="<?=$row['img']?>">
+                <input type="File" name="img" id="img">
             </div>  
             <div>
-                <label for="img">Thông tin sản phẩm: </label>
-                <textarea name="info" id="info" value="<?=$row['info']?>"></textarea>
+                <label for="info">Thông tin sản phẩm:</label>
+                <textarea name="info" id="info"></textarea>
             </div>
-                <input type="submit" value="Lưu">
+                <input type="submit" name="add" value="Lưu">
             </form>
         </div>
         <div>
         </div>
-    </body>
+</body>
 </html>
