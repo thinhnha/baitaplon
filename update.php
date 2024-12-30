@@ -11,23 +11,13 @@ if($_SERVER['REQUEST_METHOD']==='POST')
     $type = $_POST['type'];
     $quantity = $_POST['quantity'];
     $pname = $_FILES["img"]["name"];
-    $upload_dir = 'images/';
-    $upload_file= $upload_dir . basename($_FILES["img"]["name"]);
-    $imageFileType = strtolower(pathinfo($upload_file,PATHINFO_EXTENSION));
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
-{
-    $message = "Chỉ nhận tệp có định dạng JPG, JPEG, PNG";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-}
-  else { 
-    move_uploaded_file($_FILES["img"]["tmp_name"], $upload_file); 
-    $update = "UPDATE sanpham SET name = '$name', price = '$price', type = '$type', quantity = '$quantity', img = '$upload_file' WHERE id = {$id}";
+    $update = "UPDATE sanpham SET name = '$name', price = '$price', type = '$type', quantity = '$quantity' WHERE id = {$id}";
 if($conn ->query($update)===TRUE)
 {
-    header('Location:hienthi.php');
+    header('Location:index.php');
 }
 }
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,15 +47,7 @@ if($conn ->query($update)===TRUE)
                 <div>
                     <label for="quantity">Số lượng: </label>
                     <input type="number" name="quantity" id="quantity" value="<?=$row['quantity']?>">
-                </div>
-            <div>
-                <label for="img">Hình ảnh</label>
-                <input type="File" name="img" id="img" value="<?=$row['img']?>">
-            </div>  
-            <div>
-                <label for="img">Thông tin sản phẩm: </label>
-                <textarea name="info" id="info" value="<?=$row['info']?>"></textarea>
-            </div>
+</div>
                 <input type="submit" value="Lưu">
             </form>
         </div>
