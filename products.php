@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <body>
     <div id="wrapper">
-        <?php include 'btl.php'; ?> <!-- Include phần menu và thanh tìm kiếm từ btl.php -->
         <!-- sp -->
         <section class="product">
             <div class="container">
@@ -84,8 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     <?php echo $row['info']; ?>
                                 </div>
                                 <div class="product-button">
-                                    <a href="update.php?id=<?php echo $row["id"]; ?> " style="background-color: green;"><i class="fa-solid fa-wrench"></i> | Sửa</button>
-                                        <button type="input"style="background-color: red;"><i class="fa-solid fa-trash"></i> | Bán</button>
+                                <a href="sell.php?id=<?php echo $row["id"];?>" >Xóa</a>    
+                                <a href="update.php?id=<?php echo $row["id"]; ?> " style="background-color: green;"><i class="fa-solid fa-wrench"></i> | Sửa</button>
+                                    <button type="input"style="background-color: red;"><i class="fa-solid fa-trash"></i> | Đã Bán</button>
                                 </div>
                             </div>
                         </form>
